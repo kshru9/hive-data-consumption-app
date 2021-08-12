@@ -154,5 +154,5 @@ We have multiple REST APIs for different functions.
 # Swagger Documentation
 -   hit `localhost:8080/swagger-ui.html`
 
-<small>Thanks to <a href='https://github.com/Ishita-0112'>Ishita</a> and <a href='https://github.com/ParnikaKulkarni'>Parnika</a> for contributing robust validation and query method and other rest apis</small>
+<small>Thanks to <a href='https://github.com/Ishita-0112'>Ishita</a> and <a href='https://github.com/ParnikaKulkarni'>Parnika</a> for contributing robust validation and query method and other rest apis.</small> \
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
