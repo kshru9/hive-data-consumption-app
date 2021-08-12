@@ -29,7 +29,7 @@ Query a single hive table using column names, apply filters using where clause a
 
 # Architecture
 ![Architecture](./assets/final_architecture.png)
-
+<!-- 
 # Client
 
 ### UI with form submission response
@@ -39,7 +39,7 @@ Query a single hive table using column names, apply filters using where clause a
 ![Refresh State UI - started](./assets/started_state_ui_LI.jpg)
 
 ### UI with refresh response - Completed
-![Refresh State UI - completed](./assets/completed_state_ui.png)
+![Refresh State UI - completed](./assets/completed_state_ui.png) -->
 
 # Server
 
