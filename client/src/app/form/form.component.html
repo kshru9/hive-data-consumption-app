@@ -1,0 +1,209 @@
+<!-- 
+    <div *ngFor='let item of values;let i = index'>                    
+        <input type="radio" [checked]="item" (change)='onSelect(item)' > 
+        <input type="text" value='{{item.source}}'/>  
+        <button type="button">save</button>
+        <input type="radio" value="{{item.source}}" name="source" [ngModel]="item.source" (ngModelChange)='onSelectSource(item.source)'>
+    </div>  -->
+    
+<div class="container">
+
+    &nbsp;
+
+    <form (ngSubmit)='submitForm()'>
+
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4">
+                
+                <h5> Select Database</h5>
+
+                <div class="card scroll" >
+                    <ul class="list-group list-group-flush">
+                        <!-- <div *ngFor='let source of sources; let i = index'> -->
+                          <li class="list-group-item" *ngFor='let db of dbs; let i = index'>
+                            <input type="radio" value="{{db}}" name="source" [checked]='db' (click)='onSelectDb(db)'> {{db}}
+                          </li>
+                          
+                        <!-- </div> -->
+                    </ul>
+                </div>
+                
+                <!-- <div class="card" *ngFor='let source of sources; let i = index'>
+                    <input type="radio" value="{{source.source}}" name="source" [checked]='source.source' (click)='onSelectSource(source.source)'> {{source.source}}
+                </div> -->
+                
+            </div>
+            
+            <div class="col-lg-4 col-md-4">
+                <h5>Select Tables</h5>
+
+                <div class="card scroll" *ngIf='onSelectDb'>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor='let table of tables; let i = index'>
+                            <input type="radio" value="{{table}}" name="db" [checked]='table' (click)='onSelectTable(table)'> {{table}}
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- <div *ngFor='let source of sources; let i = index'>
+                    <div *ngIf='source.source===selectedSource'>
+                        <div *ngFor='let db of source.databases; let i = index'>
+                            <input type="radio" value="{{db}}" name="db" [checked]='db' (click)='onSelectDatabase(db)'> {{db}}
+                        </div>
+                    </div>
+                </div> -->
+                
+            </div>
+            
+            <div class="col-lg-4 col-md-4" *ngIf="onSelectTable">
+                <h5>Select Columns</h5>
+
+                <div class="card scroll" *ngIf='onSelectDb'>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor='let column of columns; let ind = index'>
+                            <input type="checkbox" value="{{column}}" name="column" [checked]="checkBoxValue[ind]" (change)='checkBoxValue[ind] = !checkBoxValue[ind]' (click)='onSelectColumns(column,ind)' > {{column}}
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+
+        </div>
+
+        &nbsp;
+
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6">
+
+                <div class="input-group">
+                    <!-- <p>Filters:</p> -->
+                    <span class="input-group-text">Filters</span>
+                    <textarea class="form-control" aria-label="Filters" name="filters" placeholder="write comma seperated e.g. id>100,name=John" [(ngModel)]="selectedFilters" (ngModelChange)='onSelectFilters(selectedFilters)'></textarea>
+                    <!-- <input type="text" name="filters" [(ngModel)]="selectedFilters" (ngModelChange)='onSelectFilters(selectedFilters)'>  -->
+                </div>
+
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+
+                <div class="input-group" style="width: fit-content;">
+                    <!-- <p>Number of entries to fetch</p> -->
+                    <span class="input-group-text">Number of entries to fetch</span>
+                    <textarea class="form-control"  aria-label="Number of entries to fetch" name="limit" placeholder="100" [(ngModel)]="selectedLimit" (ngModelChange)='onSelectLimit(selectedLimit)' ></textarea>
+                    <!-- <input type="text" name="limit" [(ngModel)]="selectedLimit" (ngModelChange)='onSelectLimit(selectedLimit)'> -->
+                </div>
+            
+            </div>
+            
+        </div>
+
+        
+        &nbsp;
+
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">submit</button>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+
+    </form>
+</div>
+
+<!-- <div *ngFor='let item of values;let i = index'>                    
+    <input type="radio" value="{{item.source}}" name="source" [ngSwitch]="item.source" (ngModelChange)='onSelectSource(item.source)'> {{item.source}}
+    <br>
+    <input type="radio" value="{{item.database}}" name="source" [ngSwitch]="item.database" (ngModelChange)='onSelectDatabase(item.database)'> {{item.database}}
+    <div *ngFor='let column of item.columns;let i = index'>
+        <input type="radio" value="{{column}}" name="column" [ngSwitch]="column" (ngModelChange)='onSelectColumns(column)'> {{column}}
+    </div>
+    <div>
+        <p>new value</p>
+    </div>
+</div> -->
+
+<!-- <ul>
+    <li *ngFor="let value of values" (click)="onSelect(value)"> {{value.source}} </li>
+</ul> -->
+
+&nbsp;
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-9">
+            <div class="row">
+
+                <div class="col-md-3" *ngIf="onSelectDb">
+                    <h5 >Selected Database
+                        <div class="scrollSmall">
+                            <small class="text-muted card">
+                                <p style="color: crimson; text-align:center; padding-top:1rem;">
+                                    {{selectedDb}}
+                                </p>
+                            </small>
+                        </div>
+                    </h5>
+                </div>
+                <div class="col-md-3" *ngIf="onSelectTable">
+                    <h5>Selected Tables
+                        <div class="scrollSmall">
+                            <small class="text-muted card">
+                                <p style="color: crimson; text-align:center; padding-top:1rem;">
+                                    {{selectedTable}}
+                                </p>
+                            </small>
+                        </div>
+			        </h5>
+                </div>
+                <div class="col-md-3" *ngIf="onSelectColumns">
+                    <h5>Selected Columns
+                    <div class="scrollSmall">
+                        <div class="row" *ngFor="let column of selectedColumns">
+                                <small class="text-muted card">
+                                    <p style="color: crimson; text-align:center; padding-top:1rem;">
+                                        {{column}} 
+                                    </p>
+                                </small>
+                        </div>
+                    </div>
+			</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2" style="align-items: center;">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">UUID</span>
+                <input type="text" class="form-control" [(ngModel)]="selectedUUID" (ngModelChange)='onSelectUuid(selectedUUID)' placeholder="e1df74c3-ff3a-47a7-a6de-9427e9ac47a3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+		    <button type="submit" class="btn btn-info btn-sm"  (click)="refreshStatus()">refresh</button>
+            
+            <br>
+            <br>
+            <h5>Your Response</h5>
+            <div class="card">
+                <p style="color: crimson;">
+                    UUID: {{response["uuid"]}}
+                </p>
+            </div>
+            <div class="card">
+                <p style="color: crimson;">
+                    Response: {{response["response"]}}
+                </p>
+            </div>
+            <div class="card">
+                <p style="color: crimson;">
+                    File Location: {{response["file location"]}}
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

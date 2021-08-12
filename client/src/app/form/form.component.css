@@ -1,0 +1,28 @@
+.scroll {
+height: 8cm;
+width: 15rem;
+white-space: nowrap;
+overflow-y: scroll;
+}
+
+.scrollSmall {
+    height: 5cm;
+    width: 10rem;
+    white-space: nowrap;
+    overflow-y: scroll;
+}
+
+.horiScroll {
+    width: 5rem;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+footer{
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background-color: gray;
+	color: white;
+	text-align: center;
+}
